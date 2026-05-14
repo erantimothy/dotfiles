@@ -8,7 +8,6 @@ return {
     "antosha417/nvim-lsp-file-operations",
     "3rd/image.nvim",
   },
-  
   config = function()
     require("neo-tree").setup({
       close_if_last_window = true, -- auto close Neo-tree if it's the last window
@@ -17,21 +16,20 @@ return {
         hijack_netrw_behavior = "open_default",
         filtered_items = {
                     visible = true,
-                    hide_dotfile = false,
+                    hide_dotfiles = false,
                 },
       },
       renderer = {
         highlight_git = true,
         icons = {
-            enabled = true,
+          enabled = true,
           show = {
             file = true,
             folder = true,
             folder_arrow = true,
             git = true,
           },
-        -- },
-        glyphs = {
+          glyphs = {
             default = "",
             symlink = "",
             git = {
@@ -44,11 +42,9 @@ return {
           },
         },
       },
-      view = {
-        width = 35,
-        side = 'right',
-      },
       window = {
+        width = 35,
+        position = 'left',
         mappings = {
             ["<BS>"] = "navigate_up",
             ["l"] = "open",
@@ -95,35 +91,65 @@ return {
           function()
             require("neo-tree.command").execute({toggle = true, dir = vim.loop.cwd()})
           end
-        , 100)
+        , 10)
       end
     })
 
     -- Auto close Neo-tree when it's the only window left
     vim.api.nvim_create_autocmd("BufEnter", {
       callback = function ()
-        if vim.bo.filetype == "neo-tree" and #vim.api.nvim_list_wins() == 1 then
+        if vim.bo.filetype == "neo-tree" and vim.api.nvim_list_wins() == 1 then
           vim.cmd("quit")
         end
       end
     })
+
+    -- clean up treesitter highlight issues
+    vim.api.nvim_create_autocmd({ "BufLeave", "BufEnter" }, {
+      callback = function()
+        pcall(vim.api.nvim_buf_clear_namespace, 0, -1, 0, -1)
+      end,
+    })
   end,
 
-  vim.keymap.set('n', '<leader>n', function()
-     local neotree_state = require("neo-tree.sources.manager").get_state("filesystem")
-     if neotree_state and neotree_state.winid and vim.api.nvim_get_current_win() == neotree_state.winid then
-        -- If currently in Neo-tree, go back to previous window
-        vim.cmd("wincmd p")
-     else
-        -- Otherwise, toggle Neo-tree
-        require("neo-tree.command").execute({ toggle = false, dir = vim.loop.cwd() })
-     end
-   end, { desc = "Toggle Neo-tree or return to code window" }),
+    keys = {
+    {
+      "<leader>n",
+      function()
+        local neotree_state = require("neo-tree.sources.manager").get_state("filesystem")
+        if neotree_state and neotree_state.winid
+            and vim.api.nvim_get_current_win() == neotree_state.winid
+        then
+          vim.cmd("wincmd p") -- switch back to previous window
+        else
+          require("neo-tree.command").execute({ toggle = false, dir = vim.loop.cwd() })
+        end
+      end,
+      desc = "Toggle Neo-tree or return to code window",
+    },
+    {
+      "<leader>t",
+      function()
+        require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+      end,
+      desc = "Toggle Neo-tree",
+    },
+  },
 
-  -- Toggle Neo-tree when space + t is pressed
-  vim.keymap.set('n', '<leader>t', function()
-    require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-  end
-  ),
-  
+  -- vim.keymap.set('n', '<leader>n', function()
+  --    local neotree_state = require("neo-tree.sources.manager").get_state("filesystem")
+  --    if neotree_state and neotree_state.winid and vim.api.nvim_get_current_win() == neotree_state.winid then
+  --       -- If currently in Neo-tree, go back to previous window
+  --       vim.cmd("wincmd p")
+  --    else
+  --       -- Otherwise, toggle Neo-tree
+  --       require("neo-tree.command").execute({ toggle = false, dir = vim.loop.cwd() })
+  --    end
+  --  end, { desc = "Toggle Neo-tree or return to code window" }),
+  --
+  -- -- Toggle Neo-tree when space + t is pressed
+  -- vim.keymap.set('n', '<leader>t', function()
+  --   require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+  -- end
+  -- ),
 }

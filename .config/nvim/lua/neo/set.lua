@@ -139,3 +139,56 @@ map('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', opts)
 map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
 map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
 map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
+
+
+-- Close all buffers if all are saved, then exit Neovim. Otherwise, prompt to save unsaved buffers.
+map('n', '<leader>qq', function()
+-- Check for unsaved buffers
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_get_option(buf, "modified") then
+        -- Prompt to save the buffer
+        vim.notify("Buffer " .. vim.api.nvim_buf_get_name(buf) .. " has unsaved changes.", vim.log.levels.WARN)
+        local choice = vim.fn.confirm("You have unsaved changes. Do you want to save before quitting?", "&Yes\n&No\n&Cancel", 1)
+        if choice == 1 then
+            vim.api.nvim_buf_call(buf, function() vim.cmd("write") end)  -- saves the buffer
+         elseif choice == 3 then
+            return  -- cancel quitting
+        end
+         -- vim.cmd("bufdo update")  -- saves all modified buffers
+
+      return
+    end
+  end
+  -- All buffers are saved; wipe them and quit
+  vim.cmd("bufdo bwipeout")  -- closes all buffers
+  vim.cmd("qa")               -- quits Neovim
+end, { desc = "Quit all if saved" })
+
+
+-- Keymap to pick a Copilot model and set it globally
+map("n", "<leader>cm", function()
+  local models = vim.fn["copilot-chat.client"]() -- returns list of available models
+  if not models or #models == 0 then
+    vim.notify("No Copilot models found!", vim.log.levels.WARN)
+    return
+  end
+
+  -- Ask user to select a model
+  local choice = vim.fn.inputlist(vim.list_extend({ "Select Copilot model:" }, models))
+  if choice < 1 or choice > #models then
+    vim.notify("Invalid choice", vim.log.levels.WARN)
+    return
+  end
+
+  local selected_model = models[choice]
+  vim.g.copilot_chat_model = selected_model  -- store globally
+
+  -- Update current chat if open
+  local chat = require("copilot-chat.ui").get_current()
+  if chat then
+    chat:set_model(selected_model)
+    vim.notify("Switched Copilot model to: " .. selected_model, vim.log.levels.INFO)
+  else
+    vim.notify("Selected model will be used on next chat: " .. selected_model, vim.log.levels.INFO)
+  end
+end, { desc = "Select Copilot model" })

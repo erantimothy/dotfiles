@@ -24,9 +24,9 @@ return {
         -- Tab terminal (in a new tab)
         local tab = Terminal:new({ direction = "tab" })
         
-        vim.keymap.set({"n","t"}, "<leader>ht", function() horizontal:toggle() end, { desc = "Toggle horizontal terminal" })
-        vim.keymap.set({"n", "t"}, "<leader>vt", function() vertical:toggle() end, { desc = "Toggle vertical terminal" })
-        vim.keymap.set({"n", "t"}, "<leader>ft", function() floating:toggle() end, { desc = "Toggle floating terminal" })
+        -- vim.keymap.set({"n","t"}, "<leader>ht", function() horizontal:toggle() end, { desc = "Toggle horizontal terminal" })
+        -- vim.keymap.set({"n", "t"}, "<leader>vt", function() vertical:toggle() end, { desc = "Toggle vertical terminal" })
+        -- vim.keymap.set({"n", "t"}, "<leader>ft", function() floating:toggle() end, { desc = "Toggle floating terminal" })
         vim.keymap.set({"n", "t"}, "<leader><Tab>", function() tab:toggle() end, { desc = "Toggle tab terminal" })
 
     end,

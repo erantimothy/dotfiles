@@ -1,9 +1,9 @@
 return {
     "nvimtools/none-ls.nvim",
-    dependencies = { "nvimlua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
         require("null-ls").setup({
-            
+            -- add configs           
         })
     end,
 }
