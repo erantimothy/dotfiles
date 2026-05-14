@@ -1,0 +1,194 @@
+{
+    "python.languageServer": "Pylance",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.productIconTheme": "material-product-icons",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#02165f",
+        "statusBar.foreground": "#FFFFFF",
+        "statusBar.noFolderBackground": "#4682B4",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#ececeb",
+        "activityBar.activeBorder": "#87CEFA",
+        "sideBar.background": "#10101033",
+        "sideBar.foreground": "#e9e9e7",
+        "sideBar.border": "#4682B4",
+        "editor.selectionBackground": "#87CEFA40",
+        "editor.selectionHighlightBackground": "#F0E68C30",
+        "editorCursor.foreground": "#87CEFA",
+        "terminal.foreground": "#10ed18",
+        "panel.background": "#1212138a",
+        "panel.border": "#4682B4",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FFFFFF",
+        "menu.background": "#0000009b",
+        "menu.foreground": "#eaebed",
+        "button.background": "#050505ad",
+        "button.foreground": "#FFFFFF",
+        "input.background": "#17191b31",
+        "input.foreground": "#babab9",
+        "input.border": "#4682B4",
+        "quickInput.background": "#000000a4",
+        "quickInput.foreground": "#ffffff",
+        "pickerGroup.border": "#ffffff33",
+        "pickerGroup.foreground": "#ffffffaa",
+        "terminal.background": "#00000000",
+        "list.background": "#00000000",
+        "list.hoverBackground": "#ffffff11",
+        "list.focusBackground": "#ffffff22",
+        "tree.indentGuidesStroke": "#ffffff33",
+        "list.activeSelectionBackground": "#ffffff11",
+        "list.inactiveSelectionBackground": "#ffffff06",
+        "list.inactiveSelectionForeground": "#ffffff33",
+        "list.inactiveSelectionIconForeground": "#ffffff33",
+        "list.activeSelectionForeground": "#ffffff33",
+        "list.activeSelectionIconForeground": "#ffffff33",
+        "list.hoverForeground": "#ffffff33",
+        "list.focusForeground": "#ffffff33",
+        "list.dropBackground": "#ffffff11",
+        "scrollbar.shadow": "#00000033",
+        "scrollbarSlider.background": "#ffffff33",
+        "scrollbarSlider.hoverBackground": "#ffffff33",
+        "scrollbarSlider.activeBackground": "#ffffff33",
+        "scrollbarSlider.border": "#ffffff33"
+    },
+    "terminal.integrated.background": "#00000033",
+    "[python]": {
+        "editor.defaultFormatter": null
+    },
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "python.analysis.diagnosticSeverityOverrides": {
+
+    },
+    "workbench.settings.applyToAllProfiles": [
+
+    ],
+    "explorer.compactFolders": false,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.timeout": 500,
+    "files.exclude": {
+        "**/.git": false
+    },
+    "print.folder.fileNames": true,
+    "print.folder.include": [],
+    "print.folder.exclude": [
+        "{bin,obj,out}",
+        "node_modules",
+        "data",
+        "**/*.{bin,exe,dll,hex,pdb,pdf,pfx,png,jpg,gif,bmp,suo,design}"
+    ],
+    "print.folder.maxLines": 1200,
+    "print.folder.maxFiles": 30,
+    "print.folder.includeFileList": false,
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+            "args": [
+                "--login",
+                "-i"
+            ]
+        },
+        "Ubuntu (WSL)": {
+            "path": "C:\\Windows\\System32\\wsl.exe",
+            "args": [
+                "-d",
+                "ubuntu2204",
+                "-u",
+                "mugiwara_timoshii"
+            ]
+        },
+        "MSYS2 UCRT64": {
+            "path": "C:\\msys64\\usr\\bin\\bash.exe",
+            "args": [
+                "--login",
+                "-i"
+            ],
+            "environment": {
+                "MSYSTEM": "UCRT64",
+                "CHERE_INVOKING": "1"
+            }
+        }
+    },
+    "terminal.external.windowsExec": "C:\\\\Program Files\\\\Git\\\\git-bash.exe",
+    "notebook.lineNumbers": "on",
+    "docker.extension.enableComposeLanguageServer": false,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "javascriptreact": "javascriptreact",
+        "typescript": "typescript",
+        "typescriptreact": "typescriptreact"
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "comments": false,
+            "other": true,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "window.titleBarStyle": "custom",
+    "frosted-glass-theme.fakeMica.enabled": true,
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    "vscode_vibrancy.disableFramelessWindow": true,
+    "vscode_vibrancy.opacity": 0.3,
+    "vscode_vibrancy.type": "acrylic",
+    "vscode_vibrancy.preferedDarkTheme": "Tokyo Night Storm (Outer)",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "doki.wallpaper.enabled": true,
+    "doki.background.enabled": true,
+    "doki.background.path": "C:\\Users\\erant\\Pictures\\VSCodeWallpapers\\SamuraiSolitudeOp.jpg",
+    "doki.wallpaper.path": "C:\\Users\\erant\\Pictures\\VSCodeWallpapers\\SamuraiSolitudeOp.jpg",
+    "doki.sticker.path": "C:\\Users\\erant\\Pictures\\VsCodeStickers\\PikachuSticker.png",
+    "vim.handleKeys": {
+        "<C-p>": false,
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false
+    },
+    "terminal.integrated.splitCwd": "workspaceRoot",
+    "workbench.colorTheme": "Dark Magic Night",
+    "terminal.integrated.gpuAcceleration": "off",
+    "window.systemColorTheme": "dark",
+    "window.autoDetectColorScheme": false,
+    "window.controlsStyle": "custom",
+    "workbench.sideBar.location": "right",
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "update.enableWindowsBackgroundUpdates": false,
+    "update.mode": "manual",
+    "python.analysis.typeCheckingMode": "standard",
+    "terminal.explorerKind": "both",
+    "chat.viewSessions.orientation": "stacked",
+    "vscode_custom_css.imports": [
+        "file://c:\\Users\\erant\\.vscode\\extensions\\yesitsfebreeze.smearcursor-1.3.0\\_smearcursor.js"
+    ],
+    "redhat.telemetry.enabled": true,
+    "chat.checkpoints.showFileChanges": true,
+    "remote.autoForwardPortsSource": "hybrid",
+    "accessibility.signalOptions.volume": 0
+}
