@@ -6,7 +6,8 @@ esac
 
 # Command line variables
 export Winroot='/mnt/c'
-export Asus='/mnt/c/Users/ASUS'
+export Winhome='/mnt/c/Users/erant'
+# export Asus='/mnt/c/Users/ASUS'
 export kalisf='/mnt/f/Kali_shf'
 
 set -o vi
@@ -306,3 +307,52 @@ alias pbpaste="xclip -selection clipboard -o"
 
 #windows git executable
 alias wgit="$Winroot/'Program Files'/Git/mingw64/bin/git.exe"
+
+alias clsrc="clear && exec zsh"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+
+function show_system_info() {
+    # Colors
+    local RED='\e[38;5;202m'    # Apple red/orange
+    local BLUE='\e[38;5;19m'    # Navy Blue
+    local WHITE='\e[97m'        # Bright white
+    local INFO='\e[38;5;251m'   # Info text color
+    local RESET='\e[0m'         # Reset color
+
+    # System information with proper error handling for macOS
+    local USER=$(whoami)
+    local HOSTNAME=$(hostname)
+    local OS=$(sw_vers -productName 2>/dev/null)" "$(sw_vers -productVersion 2>/dev/null || echo "Ubuntu")
+    local KERNEL=$(uname -r)
+    local UPTIME=$(uptime | sed 's/.*up \([^,]*\).*/\1/')
+    local PACKAGES=$(brew list --formula 2>/dev/null | wc -l | tr -d ' ' || echo "Unknown")
+    local SHELL=$(basename "$SHELL")
+    local MEMORY=$(free -h | awk '/Mem:/ {print $3 "used / " $2 " total"}' || echo "Unknown")
+
+    # Print Apple logo with system information
+    echo -e "
+⠀⠀⡶⠛⠲⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡶⠚⢲⡀⠀
+⣰⠛⠃⠀⢠⣏⠀⠀⠀⠀⣀⣠⣤⣤⣤⣤⣤⣤⣤⣀⡀⠀⠀⠀⣸⡇⠀⠈⠙⣧  ${RED}User:${RESET}     ${INFO}${USER}${RESET}
+⠸⣦⣤⣄⠀⠙⢷⣤⣶⠟⠛⢉⣁⣠⣤⣤⣤⣀⣉⠙⠻⢷⣤⡾⠋⢀⣠⣤⣴⠟  ${RED}Hostname:${RESET} ${INFO}${HOSTNAME}${RESET}
+⠀⠀⠈⠳⣤⡾⠋⣀⣴⣿⣿⠿⠿⠟⠛⠿⠿⣿⣿⣶⣄⠙⢿⣦⠟⠁⠀⠀⠀   ${RED}OS:${RESET}      ${INFO}${OS}${RESET}
+⠀⠀⢀⣾⠟⢀⣼⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣿⣷⡄⠹⣷⡀⠀⠀⠀   ${RED}Kernel:${RESET}   ${INFO}${KERNEL}${RESET}
+⠀⠀⣾⡏⢠⣿⣿⡯⠤⠤⠤⠒⠒⠒⠒⠒⠒⠒⠤⠤⠽⣿⣿⡆⠹⣷⡀⠀⠀   ${RED}Uptime:${RESET}  ${INFO}${UPTIME}${RESET}
+⠀⢸⣟⣠⡿⠿⠟⠒⣒⣒⣈⣉⣉⣉⣉⣉⣉⣉⣁⣒⣒⡛⠻⠿⢤⣹⣇⠀⠀   ${RED}Packages:${RESET} ${INFO}${PACKAGES}${RESET}
+⠀⣾⡭⢤⣤⣠⡞⠉⠉⢀⣀⣀⠀⠀⠀⠀⢀⣀⣀⠀⠈⢹⣦⣤⡤⠴⣿⠀⠀   ${RED}Shell:${RESET}    ${INFO}${SHELL}${RESET}
+⠀⣿⡇⢸⣿⣿⣇⠀⣼⣿⣿⣿⣷⠀⠀⣼⣿⣿⣿⣷⠀⢸⣿⣿⡇⠀⣿⠀⠀   ${RED}Memory:${RESET}   ${INFO}${MEMORY}${RESET}
+⠀⢻⡇⠸⣿⣿⣿⡄⢿⣿⣿⣿⡿⠀⠀⢿⣿⣿⣿⡿⢀⣿⣿⣿⡇⢸⣿⠀⠀
+⠀⠸⣿⡀⢿⣿⣿⣿⣆⠉⠛⠋⠁⢴⣶⠀⠉⠛⠉⣠⣿⣿⣿⡿⠀⣾⠇⠀⠀
+⠀⠀⢻⣷⡈⢻⣿⣿⣿⣿⣶⣤⣀⣈⣁⣀⡤⣴⣿⣿⣿⣿⡿⠁⣼⠟⠀⠀⠀
+⠀⠀⢀⣽⣷⣄⠙⢿⣿⣿⡟⢲⠧⡦⠼⠤⢷⢺⣿⣿⡿⠋⣠⣾⢿⣄⠀⠀⠀
+⢰⠟⠛⠟⠁⣨⡿⢷⣤⣈⠙⢿⡙⠒⠓⠒⠓⠚⣹⠛⢉⣠⣾⠿⣧⡀⠙⠋⠙⣆
+⠹⣄⡀⠀⠐⡏⠀⠀⠉⠛⠿⣶⣿⣦⣤⣤⣤⣶⣷⡾⠟⠋⠀⠀⢸⡇⠀⢠⣤⠟
+⠀⠀⠳⢤⠼⠃⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠘⠷⢤⠾⠁⠀${RESET}
+"
+}
+
+show_system_info

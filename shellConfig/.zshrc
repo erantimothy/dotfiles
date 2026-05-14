@@ -5,13 +5,16 @@
 #autoload -Uz compinit
 #compinit
 
+# Avoid collision with VS Code's __vsc_update_env loop variable
+unset key 2>/dev/null
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export kalisf='/mnt/f/Kali_shf'
 export Winroot='/mnt/c'
-export Asus="/mnt/c/Users/ASUS"
+export Winhome="/mnt/c/Users/erant"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -143,6 +146,7 @@ bindkey '^[[6~' end-of-buffer-or-history          # page down
 #bindkey "^[[A" up-history
 #bindkey "^[[B" down-history
 bindkey '^[[Z' undo                               # shift + tab undo last action
+
 
 # enable completion features
 autoload -Uz compinit
@@ -358,6 +362,10 @@ alias wgit="$Winroot/'Program Files'/Git/mingw64/bin/git.exe"
 
 alias clsrc="clear && exec zsh"
 
+alias ag="$Winroot/Users/erant/AppData/Local/Programs/Antigravity/Antigravity.exe"
+
+alias idea='cmd.exe /C start "" "C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.2\bin\idea64.exe" "$(wslpath -w .)"'
+
 function show_system_info() {
     # Colors
     local RED='\e[38;5;202m'  # Apple red/orange
@@ -399,3 +407,6 @@ ${BLUE}⠹⣄⡀⠀⠐⡏⠀⠀⠉⠛⠿⣶⣿⣦⣤⣤⣤⣶⣷⡾⠟⠋⠀⠀�
 
 show_system_info
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
